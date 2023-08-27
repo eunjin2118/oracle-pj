@@ -44,8 +44,8 @@ public class dbServiceImpl implements dbService{
     }
 
     @Override
-    public void update(Integer buser_id, buserDTO dto) {
-        mapper.update(buser_id, dto);
+    public void update(buserDTO dto) {
+        mapper.update(dto);
     }
 
 

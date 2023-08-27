@@ -21,8 +21,7 @@
     </select>
 
     <update id="update" parameterType="kr.hs.study.dbTest.dto.buserDTO">
-        update buser set name = #{name}, email = #{email}
-                     where buser_id = #{buser_id}
+        update buser set name = #{name}, email = #{email} where buser_id = #{buser_id}
     </update>
 
 </mapper>

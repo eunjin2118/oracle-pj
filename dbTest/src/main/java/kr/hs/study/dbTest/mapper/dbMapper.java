@@ -14,5 +14,5 @@ public interface dbMapper {
 
     public buserDTO select(Integer buser_id);
 
-    public void update(Integer buser_id, buserDTO dto);
+    public void update(buserDTO dto);
 }

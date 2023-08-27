@@ -167,10 +167,18 @@ public class testController {
     }
 
     @PostMapping("/updateuser")
-    public String updateuser(buserDTO dto, HttpSession session) {
+    public String updateuser(buserDTO dto, HttpSession session,Model model) {
         buserDTO authenticatedUser = (buserDTO) session.getAttribute("user");
-        service.update(authenticatedUser.getBuser_id(), dto);
+
+        authenticatedUser.setName(dto.getName()); // 이름 업데이트
+        authenticatedUser.setEmail(dto.getEmail()); // 이메일 업데이트
+
+        model.addAttribute("user", authenticatedUser);
+        dto.setBuser_id(authenticatedUser.getBuser_id());
+        System.out.println(dto);
+        service.update(dto);
         return "redirect:/mypage";
+
     }
 
     @GetMapping("/mycomment/{id}")

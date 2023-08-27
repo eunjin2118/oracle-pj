@@ -13,5 +13,5 @@ public interface dbService {
 
     public buserDTO authenticate(String email, String password) throws AuthenticationException;
 
-    public void update(Integer buser_id, buserDTO dto);
+    public void update(buserDTO dto);
 }
