@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO MAPPER 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.hs.study.dbTest.mapper.bookRequestMapper">
+    <insert id="insert" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO">
+        insert into book_request(request_id, buser_id, request_date, request_author, request_title, is_approved) values(BOOK_REQUEST_SEQ.NEXTVAL, #{buser_id}, sysdate, #{request_author},  #{request_title}, 0)
+    </insert>
+</mapper>

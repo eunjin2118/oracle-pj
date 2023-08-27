@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO MAPPER 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.hs.study.dbTest.mapper.bookMapper">
+    <select id="select" resultType="kr.hs.study.dbTest.dto.bookDTO">
+        select * from  (select * from book order by dbms_random.value) where rownum <![CDATA[ < ]]> 6
+<!--        SELECT * FROM ( SELECT book.*, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn FROM book) WHERE rn <= 5-->
+    </select>
+
+
+    <select id="read" resultType="kr.hs.study.dbTest.dto.bookDTO">
+        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name from book b join book_categories c on b.category_id = c.category_id
+    </select>
+
+    <select id="search" resultType="kr.hs.study.dbTest.dto.bookDTO">
+        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name from book b join book_categories c on b.category_id = c.category_id
+        WHERE BOOK_TITLE  like '%' || #{searchtext} || '%' OR BOOK_AUTHOR  like '%' || #{searchtext} || '%'
+    </select>
+</mapper>

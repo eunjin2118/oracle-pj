@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        margin : 0;
+    }
+
+    .nav-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #F7E28A;
+        list-style-type: none; /*목록 기호 제거*/
+    }
+
+    .nav-item {
+        margin: 0 15px;
+        padding: 15px;
+        cursor: pointer;
+    }
+
+    .nav-item a{
+        text-align: center;
+        text-decoration: none;
+        color: black;
+    }
+
+    .titletopbook {
+        margin-top: 30px;
+    }
+
+    .titletopbook h1 {
+        text-align: center;
+    }
+
+    .topbooks{
+        margin-top : 20px;
+        margin-left: 100px;
+        margin-right: 100px;
+
+        justify-content: center;
+        display: flex;
+    }
+
+    .book{
+        border-collapse: collapse;
+        text-align: left;
+        line-height: 1.5;
+    }
+    .book thead {
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        background-color: #F7E28A;
+        border-bottom: 3px solid #036;
+    }
+
+    .book tbody {
+        width: 150px;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+        background: #f3f6f7;
+    }
+
+    .book td {
+        width: 350px;
+        padding: 10px;
+        vertical-align: top;
+        border-bottom: 1px solid #ccc;
+    }
+</style>
+<body>
+<!--<h1 th:text="메인입니다"></h1>-->
+<!--<header><h1 th:text="메인입니다"></h1></header>-->
+<nav>
+    <ul class="nav-container">
+        <li class="nav-item"><a th:href="@{'/main'}">홈 화면</a></li>
+        <li class="nav-item"><a th:href="@{'/list'}">책 목록보기</a></li>
+        <li class="nav-item"><a th:href="@{'/write'}">책 추가 폼</a></li>
+        <li class="nav-item"><a th:href="@{'/mypage'}">마이페이지</a></li>
+        <li class="nav-item"><a th:href="@{'/logout'}">로그아웃</a></li>
+    </ul>
+</nav>
+<div class="titletopbook">
+    <h1>추천 도서</h1>
+</div>
+<div class="topbooks">
+    <table class="book">
+        <thead>
+        <tr><td>TITLE</td><td>AUTHOR</td><td>PUBLISH</td></tr>
+        </thead>
+        <!--    <td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td>list에 있는 데이터가 하나씩 one이라는 변수에 들어감-->
+        <tbody>
+        <tr th:each="one:${book}">
+            <td th:text="${one.book_title}"></td>
+            <td th:text="${one.book_author}"></td>
+            <td th:text="${one.book_publish}"></td>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
