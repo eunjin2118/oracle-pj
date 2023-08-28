@@ -48,4 +48,9 @@ public class bookServiceImpl implements bookService{
     public void updatebook(bookDTO dto) {
         mapper.updatebook(dto);
     }
+
+    @Override
+    public void deletebook(Integer id) {
+        mapper.deletebook(id);
+    }
 }

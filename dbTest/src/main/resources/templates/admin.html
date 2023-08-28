@@ -16,7 +16,7 @@
         width: 100%;
         margin: 0;
         padding: 0;
-        background: #F7E28A;
+        background: #8a9cf7;
         list-style-type: none; /*목록 기호 제거*/
     }
 
@@ -144,7 +144,7 @@
             <td th:text="${one.book_author}"></td>
             <td th:text="${one.book_publish}"></td>
             <td th:text="${one.category_name}"></td>
-            <td><a th:href="@{'/bookupdate/'+${one.book_id}}" class="form_review">수정</a> | <a th:href="@{'/admin/delete/'+${one.book_id}}" class="form_review">삭제</a></td>
+            <td><a th:href="@{'/bookupdate/'+${one.book_id}}" class="form_review">수정</a> | <a th:href="@{'/deletebook/'+${one.book_id}}" class="form_review">삭제</a></td>
         </tbody>
     </table>
 </div>

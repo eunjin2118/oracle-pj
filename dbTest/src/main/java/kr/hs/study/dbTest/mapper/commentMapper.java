@@ -20,4 +20,6 @@ public interface commentMapper {
     public List<commentDTO> mycomments(Integer buser_id);
 
     public void delete(Integer comment_id);
+
+    public void deletecomments(Integer book_id);
 }

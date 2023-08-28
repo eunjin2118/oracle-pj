@@ -21,4 +21,6 @@ public interface bookMapper {
 
     public void updatebook(bookDTO dto);
 
+    public void deletebook(Integer id);
+
 }

@@ -48,4 +48,10 @@ public class commentServiceImpl implements commentService{
         mapper.delete(comment_id);
     }
 
+    @Override
+    public void deletecomments(Integer book_id) {
+        mapper.deletecomments(book_id);
+    }
+
+
 }

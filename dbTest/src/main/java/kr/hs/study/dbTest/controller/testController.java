@@ -209,7 +209,7 @@ public class testController {
         model.addAttribute("books", books);
         return "admin";
     }
-//    <a th:href="@{'/admin/update/'+${one.book_id}}" class="form_review">수정</a>
+
     @GetMapping("/bookupdate/{book_id}")
     public String updateBook(@PathVariable String book_id, Model model) {
         Integer book = Integer.valueOf(book_id);
@@ -225,6 +225,14 @@ public class testController {
     public String updatebook(bookDTO dto) {
         System.out.println(dto);
         bookservice.updatebook(dto);
+        return "redirect:/admin";
+    }
+
+    @GetMapping("/deletebook/{book_id}")
+    public String deletebook(@PathVariable String book_id) {
+        Integer id = Integer.valueOf(book_id);
+        commentservice.deletecomments(id); // 자식 테이블
+        bookservice.deletebook(id); // 부모 테이블
         return "redirect:/admin";
     }
 }

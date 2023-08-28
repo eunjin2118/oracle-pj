@@ -20,4 +20,7 @@ public interface commentService {
 
     public void delete(Integer comment_id);
 
+    public void deletecomments(Integer book_id);
+
+
 }
