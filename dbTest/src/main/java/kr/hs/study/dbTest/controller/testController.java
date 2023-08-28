@@ -50,6 +50,25 @@ public class testController {
         return "info_user";
     }
 
+
+    @GetMapping("/add-book-category")
+    public String addall(Model model){
+        List<bookRequestDTO> dto = book_requestservice.select();
+        model.addAttribute("books", dto);
+
+        List<categoryDTO> dto2 = bookservice.selectcg();
+        System.out.println(dto2);
+        model.addAttribute("categories", dto2);
+        return "addbook_addcategory";
+    }
+
+    @PostMapping("/requestbook")
+    public String insertbook(bookDTO dto) {
+//        System.out.println(dto);
+//        book_requestservice.insertbook(dto);
+//        book_requestservice.deleterequestbook(dto.getBook_title(), dto.getBook_author());
+        return "redirect:/addbook_addcategory";
+    }
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 무효화
@@ -96,7 +115,7 @@ public class testController {
                 System.out.println("오호");
                 return "redirect:/admin";
             }
-            else return "redirect:/main"; // 인증 성공 시 대시보드 페이지로 리다이렉트
+            else return "redirect:/main"; // 인증 성공 시
         } catch (AuthenticationException e) {
             // 인증 실패 시 처리
             return "redirect:/"; // 로그인 페이지에 다시 머물기
@@ -148,11 +167,10 @@ public class testController {
         return "redirect:/comment/"+book_id;
     }
 
-
     @GetMapping("/user/{id}")
     public String readuser(HttpSession session, Model model) {
         buserDTO authenticatedUser = (buserDTO) session.getAttribute("user");
-        buserDTO dto = service.select(authenticatedUser.getBuser_id());
+        buserDTO dto = service.selectuser(authenticatedUser.getBuser_id());
         model.addAttribute("user", dto);
         return "info_user";
     }
@@ -235,4 +253,5 @@ public class testController {
         bookservice.deletebook(id); // 부모 테이블
         return "redirect:/admin";
     }
+
 }

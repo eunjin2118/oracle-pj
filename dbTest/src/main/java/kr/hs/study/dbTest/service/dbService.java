@@ -9,7 +9,9 @@ import java.util.List;
 public interface dbService {
     public void insert(buserDTO dto);
 
-    public buserDTO select(Integer buser_id);
+//    public buserDTO select(Integer buser_id);
+
+    public buserDTO selectuser(Integer buser_id);
 
     public buserDTO authenticate(String email, String password) throws AuthenticationException;
 

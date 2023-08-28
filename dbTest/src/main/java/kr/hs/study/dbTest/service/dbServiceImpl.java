@@ -28,10 +28,16 @@ public class dbServiceImpl implements dbService{
     }
 
     @Override
-    public buserDTO select(Integer buser_id) {
-        buserDTO user = mapper.select(buser_id);
-        return user;
+    public buserDTO selectuser(Integer buser_id) {
+        buserDTO dto = mapper.selectuser(buser_id);
+        return dto;
     }
+
+//    @Override
+//    public buserDTO select(Integer buser_id) {
+//        buserDTO user = mapper.select(buser_id);
+//        return user;
+//    }
 
     @Override
     public buserDTO authenticate(String email, String password) throws AuthenticationException {

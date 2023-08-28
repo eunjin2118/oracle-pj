@@ -16,8 +16,13 @@
         SELECT * FROM BUSER WHERE EMAIL = #{email}
     </select>
 
-    <select id="select" resultType="kr.hs.study.dbTest.dto.buserDTO">
-        SELECT * FROM buser WHERE buser_id = #{buser_id}
+<!--    <select id="selectuser" resultType="kr.hs.study.dbTest.dto.buserDTO">-->
+<!--        SELECT * FROM buser WHERE buser_id = #{buser_id}-->
+<!--&#45;&#45;         SELECT * FROM 'SPRING'.user.info WHERE buser_id = #{buser_id}-->
+<!--    </select>-->
+
+    <select id="selectuser" resultType="kr.hs.study.dbTest.dto.buserDTO">
+        SELECT * FROM SPRING.user_info WHERE buser_id = #{buser_id}
     </select>
 
     <update id="update" parameterType="kr.hs.study.dbTest.dto.buserDTO">

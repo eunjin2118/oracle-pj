@@ -12,7 +12,8 @@ public interface dbMapper {
 
     public buserDTO findByEmail(String eamil);
 
-    public buserDTO select(Integer buser_id);
+//    public buserDTO select(Integer buser_id);
+    public buserDTO selectuser(Integer buser_id);
 
     public void update(buserDTO dto);
 }
