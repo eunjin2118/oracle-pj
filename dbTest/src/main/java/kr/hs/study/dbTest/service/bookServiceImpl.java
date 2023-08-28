@@ -2,6 +2,7 @@ package kr.hs.study.dbTest.service;
 
 import kr.hs.study.dbTest.dto.bookDTO;
 import kr.hs.study.dbTest.dto.buserDTO;
+import kr.hs.study.dbTest.dto.categoryDTO;
 import kr.hs.study.dbTest.mapper.bookMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,5 +30,22 @@ public class bookServiceImpl implements bookService{
     public List<bookDTO> search(String searchtext) {
         List<bookDTO> books = mapper.search(searchtext);
         return books;
+    }
+
+    @Override
+    public bookDTO bookread(Integer book_id) {
+        bookDTO dto = mapper.bookread(book_id);
+        return dto;
+    }
+
+    @Override
+    public List<categoryDTO> selectcg() {
+        List<categoryDTO> dto = mapper.selectcg();
+        return dto;
+    }
+
+    @Override
+    public void updatebook(bookDTO dto) {
+        mapper.updatebook(dto);
     }
 }

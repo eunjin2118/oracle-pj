@@ -1,10 +1,7 @@
 package kr.hs.study.dbTest.controller;
 
 
-import kr.hs.study.dbTest.dto.bookDTO;
-import kr.hs.study.dbTest.dto.bookRequestDTO;
-import kr.hs.study.dbTest.dto.buserDTO;
-import kr.hs.study.dbTest.dto.commentDTO;
+import kr.hs.study.dbTest.dto.*;
 import kr.hs.study.dbTest.service.bookRequestService;
 import kr.hs.study.dbTest.service.bookService;
 import kr.hs.study.dbTest.service.commentService;
@@ -38,11 +35,6 @@ public class testController {
         return "index";
     }
 
-    @GetMapping("/admin")
-    public String admin(){
-        return "admin";
-    }
-
     @GetMapping("/write")
     public String add(){
         return "write_form";
@@ -68,7 +60,6 @@ public class testController {
     public String list(Model model){
         List<bookDTO> books = bookservice.read();
         model.addAttribute("books", books);
-        System.out.println(books);
         return "booklist";
     }
 
@@ -209,5 +200,31 @@ public class testController {
         model.addAttribute("comments", comments);
 
         return "redirect:/mycomment/"+authenticatedUser.getBuser_id();
+    }
+
+
+    @GetMapping("/admin")
+    public String admin(Model model){
+        List<bookDTO> books = bookservice.read();
+        model.addAttribute("books", books);
+        return "admin";
+    }
+//    <a th:href="@{'/admin/update/'+${one.book_id}}" class="form_review">수정</a>
+    @GetMapping("/bookupdate/{book_id}")
+    public String updateBook(@PathVariable String book_id, Model model) {
+        Integer book = Integer.valueOf(book_id);
+        bookDTO dto1 = bookservice.bookread(book);
+        model.addAttribute("book", dto1);
+        List<categoryDTO> dto2 = bookservice.selectcg();
+        System.out.println(dto2);
+        model.addAttribute("categories", dto2);
+        return "update_book";
+    }
+
+    @PostMapping("/updatebook")
+    public String updatebook(bookDTO dto) {
+        System.out.println(dto);
+        bookservice.updatebook(dto);
+        return "redirect:/admin";
     }
 }

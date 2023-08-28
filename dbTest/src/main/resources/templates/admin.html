@@ -78,7 +78,7 @@
         padding: 10px;
         font-weight: bold;
         vertical-align: top;
-        background-color: #F7E28A;
+        background-color: #8a9cf7;
         border-bottom: 3px solid #036;
         text-align: center;
     }
@@ -114,7 +114,7 @@
     .form_review {
         text-decoration: none;
         color: black;
-        background-color: #F7E28A;
+        background-color: #8a9cf7;
         padding: 5px 10px;
         border: 1px solid #ddd;
         border-radius: 4px;
@@ -124,34 +124,27 @@
 
 </style>
 <body>
-<h1 th:text="어드민이오"></h1>
 <nav>
     <ul class="nav-container">
-        <li class="nav-item"><a th:href="@{'/main'}">홈 화면</a></li>
-        <li class="nav-item"><a th:href="@{'/list'}">책 목록보기</a></li>
-        <li class="nav-item"><a th:href="@{'/write'}">책 추가 폼</a></li>
-        <li class="nav-item"><a th:href="@{'/mypage'}">마이페이지</a></li>
+        <li class="nav-item"><a th:href="@{'/admin'}">책 리스트</a></li>
+        <li class="nav-item"><a th:href="@{'/addbook'}">책 추가</a></li>
+        <li class="nav-item"><a th:href="@{'/userlist'}">유저 리스트</a></li>
         <li class="nav-item"><a th:href="@{'/logout'}">로그아웃</a></li>
     </ul>
 </nav>
-<div class="titletopbook">
-    <h1>어드민이오</h1>
-</div>
 
 <div class="topbooks">
     <table class="book">
         <thead>
-        <tr><td>TITLE</td><td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td><td>MORE</td><td>COMMENT</td></tr>
+        <tr><td>TITLE</td><td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td><td>ECT</td></tr>
         </thead>
-        <!--    <td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td>list에 있는 데이터가 하나씩 one이라는 변수에 들어감-->
         <tbody>
         <tr th:each="one:${books}">
             <td th:text="${one.book_title}"></td>
             <td th:text="${one.book_author}"></td>
             <td th:text="${one.book_publish}"></td>
             <td th:text="${one.category_name}"></td>
-            <td><a th:href="${one.book_url}">MORE</a></td>
-            <td><a th:href="@{'/comment/'+${one.book_id}}" class="form_review">댓글쓰기</a></td>
+            <td><a th:href="@{'/bookupdate/'+${one.book_id}}" class="form_review">수정</a> | <a th:href="@{'/admin/delete/'+${one.book_id}}" class="form_review">삭제</a></td>
         </tbody>
     </table>
 </div>

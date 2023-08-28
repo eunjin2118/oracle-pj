@@ -17,4 +17,18 @@
         SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name from book b join book_categories c on b.category_id = c.category_id
         WHERE BOOK_TITLE  like '%' || #{searchtext} || '%' OR BOOK_AUTHOR  like '%' || #{searchtext} || '%'
     </select>
+
+    <select id="bookread" resultType="kr.hs.study.dbTest.dto.bookDTO">
+        select * from book where book_id = #{book_id}
+    </select>
+
+    <update id="updatebook" parameterType="kr.hs.study.dbTest.dto.bookDTO">
+        update book set book_title = #{book_title}, book_author = #{book_author}, book_publish = #{book_publish}, book_url = #{book_publish}, category_id = #{category_id}
+        where book_id = #{book_id}
+    </update>
+
+    <select id="selectcg" resultType="kr.hs.study.dbTest.dto.categoryDTO">
+        select * from book_categories
+    </select>
+
 </mapper>
