@@ -50,25 +50,60 @@ public class testController {
         return "info_user";
     }
 
+    @GetMapping("/userlist")
+    public String userist(Model model){
+        List<buserDTO> dto = service.selectall();
+        model.addAttribute("users", dto);
+        return "userlist";
+    }
 
-    @GetMapping("/add-book-category")
-    public String addall(Model model){
+    @GetMapping("/deleteuser/{buser_id}")
+    public String deleteuser(@PathVariable String buser_id){
+        Integer id = Integer.valueOf(buser_id);
+        service.deleteuser(id);
+        return "redirect:/userlist";
+    }
+
+    @GetMapping("/updateuser/{buser_id}")
+    public String updateuser(@PathVariable String buser_id){
+        Integer id = Integer.valueOf(buser_id);
+        service.updateadmin(id);
+        return "redirect:/userlist";
+    }
+
+    @GetMapping("/book")
+    public String book(Model model){
         List<bookRequestDTO> dto = book_requestservice.select();
         model.addAttribute("books", dto);
 
         List<categoryDTO> dto2 = bookservice.selectcg();
         System.out.println(dto2);
         model.addAttribute("categories", dto2);
-        return "addbook_addcategory";
+        return "book";
     }
 
     @PostMapping("/requestbook")
     public String insertbook(bookDTO dto) {
-//        System.out.println(dto);
-//        book_requestservice.insertbook(dto);
-//        book_requestservice.deleterequestbook(dto.getBook_title(), dto.getBook_author());
-        return "redirect:/addbook_addcategory";
+        System.out.println(dto.getBook_title() + " : " + dto.getBook_author());
+        book_requestservice.insertbook(dto);
+
+        book_requestservice.update(dto.getBook_title());
+        return "redirect:/book";
     }
+
+    @GetMapping("/category")
+    public String category(Model model){
+        List<categoryDTO> dto = bookservice.countcg();
+        model.addAttribute("dto", dto);
+        return "category";
+    }
+
+    @PostMapping("/addcategory")
+    public String addcategory(categoryDTO dto) {
+        bookservice.insertcg(dto);
+        return "redirect:/category";
+    }
+
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         session.invalidate(); // 세션 무효화

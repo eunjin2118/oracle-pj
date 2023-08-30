@@ -45,6 +45,17 @@ public class bookServiceImpl implements bookService{
     }
 
     @Override
+    public List<categoryDTO> countcg() {
+        List<categoryDTO> dto = mapper.countcg();
+        return dto;
+    }
+
+    @Override
+    public void insertcg(categoryDTO dto) {
+        mapper.insertcg(dto);
+    }
+
+    @Override
     public void updatebook(bookDTO dto) {
         mapper.updatebook(dto);
     }

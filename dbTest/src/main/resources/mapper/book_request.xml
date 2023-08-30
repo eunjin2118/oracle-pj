@@ -16,6 +16,10 @@
     </insert>
 
     <delete id="deleterequestbook" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO" >
-        delete from book_request where request_title = #{request_title} and requst_author = #{request_title}
+        delete from book_request where request_title = #{book_title} and requst_author = #{book_author}
     </delete>
+
+    <update id="update" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO">
+        update book_request set is_approved = 1 where request_title = #{book_title}
+    </update>
 </mapper>

@@ -30,7 +30,12 @@ public class bookRequestServiceImpl implements bookRequestService{
     }
 
     @Override
-    public void deleterequestbook(String request_title, String request_author) {
-        mapper.deleterequestbook(request_title, request_author);
+    public void deleterequestbook(String book_title, String book_author) {
+        mapper.deleterequestbook(book_title, book_author);
+    }
+
+    @Override
+    public void update(String book_title) {
+        mapper.update(book_title);
     }
 }

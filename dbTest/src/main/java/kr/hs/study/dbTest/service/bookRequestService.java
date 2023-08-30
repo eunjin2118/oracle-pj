@@ -12,6 +12,9 @@ public interface bookRequestService {
 
     public void insertbook(bookDTO dto);
 
-    public void deleterequestbook(String request_title, String request_author);
+    public void deleterequestbook(String book_title, String book_author);
+
+    public void update(String book_title);
 
 }
+

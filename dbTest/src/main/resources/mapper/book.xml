@@ -22,17 +22,32 @@
         select * from book where book_id = #{book_id}
     </select>
 
+
     <update id="updatebook" parameterType="kr.hs.study.dbTest.dto.bookDTO">
         update book set book_title = #{book_title}, book_author = #{book_author}, book_publish = #{book_publish}, book_url = #{book_publish}, category_id = #{category_id}
         where book_id = #{book_id}
     </update>
 
+<!--    카테고리-->
     <select id="selectcg" resultType="kr.hs.study.dbTest.dto.categoryDTO">
         select * from book_categories
+    </select>
+
+    <insert id="insertcg" parameterType="kr.hs.study.dbTest.dto.categoryDTO">
+        insert into book_categories(category_id, category_name) values(CATEGORY_SEQ.NEXTVAL, #{category_name})
+    </insert>
+
+    <select id="countcg" resultType="kr.hs.study.dbTest.dto.categoryDTO">
+        SELECT c.category_name, COUNT(b.book_id) AS book_count
+        FROM book_categories c
+                 LEFT JOIN book b ON c.category_id = b.category_id
+        GROUP BY c.category_name
     </select>
 
     <delete id="deletebook" parameterType="kr.hs.study.dbTest.dto.bookDTO" >
         delete from book where book_id = #{book_id}
     </delete>
+
+
 
 </mapper>

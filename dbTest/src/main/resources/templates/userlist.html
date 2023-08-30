@@ -124,6 +124,7 @@
 
 </style>
 <body>
+<!--<h1 th:text="메인입니다"></h1>-->
 <nav>
     <ul class="nav-container">
         <li class="nav-item"><a th:href="@{'/admin'}">책 리스트</a></li>
@@ -133,19 +134,23 @@
         <li class="nav-item"><a th:href="@{'/logout'}">로그아웃</a></li>
     </ul>
 </nav>
+<div class="titletopbook">
+    <h1>유저목록</h1>
+</div>
 
 <div class="topbooks">
     <table class="book">
         <thead>
-        <tr><td>TITLE</td><td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td><td>ECT</td></tr>
+        <tr><td>NAME</td><td>EMAIL</td><td>ROLE</td><td>DELETE</td><td>ROLE바꾸기</td></tr>
         </thead>
+        <!--    <td>AUTHOR</td><td>PUBLISH</td><td>CATEGORY</td>list에 있는 데이터가 하나씩 one이라는 변수에 들어감-->
         <tbody>
-        <tr th:each="one:${books}">
-            <td th:text="${one.book_title}"></td>
-            <td th:text="${one.book_author}"></td>
-            <td th:text="${one.book_publish}"></td>
-            <td th:text="${one.category_name}"></td>
-            <td><a th:href="@{'/bookupdate/'+${one.book_id}}" class="form_review">수정</a> | <a th:href="@{'/deletebook/'+${one.book_id}}" class="form_review">삭제</a></td>
+        <tr th:each="one:${users}">
+            <td th:text="${one.name}"></td>
+            <td th:text="${one.email}"></td>
+            <td th:text="${one.role}"></td>
+            <td><a th:href="@{'/deleteuser/'+${one.buser_id}}" class="form_review">삭제하기</a></td>
+            <td><a th:href="@{'/updateuser/'+${one.buser_id}}" class="form_review">admin으로 승급</a></td>
         </tbody>
     </table>
 </div>

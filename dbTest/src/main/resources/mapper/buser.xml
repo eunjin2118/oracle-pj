@@ -25,8 +25,20 @@
         SELECT * FROM SPRING.user_info WHERE buser_id = #{buser_id}
     </select>
 
+    <select id="selectall" resultType="kr.hs.study.dbTest.dto.buserDTO">
+        SELECT * FROM buser
+    </select>
+
     <update id="update" parameterType="kr.hs.study.dbTest.dto.buserDTO">
         update buser set name = #{name}, email = #{email} where buser_id = #{buser_id}
+    </update>
+
+    <delete id="deleteuser" parameterType="kr.hs.study.dbTest.dto.buserDTO" >
+        delete from buser where buser_id = #{buser_id}
+    </delete>
+
+    <update id="updateadmin" parameterType="kr.hs.study.dbTest.dto.buserDTO">
+        update buser set role = 'admin' where buser_id = #{buser_id}
     </update>
 
 </mapper>

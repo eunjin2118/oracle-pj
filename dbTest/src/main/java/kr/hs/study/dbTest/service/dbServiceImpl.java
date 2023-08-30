@@ -54,5 +54,21 @@ public class dbServiceImpl implements dbService{
         mapper.update(dto);
     }
 
+    @Override
+    public List<buserDTO> selectall() {
+        List<buserDTO> dto = mapper.selectall();
+        return dto;
+    }
+
+    @Override
+    public void deleteuser(Integer buser_id) {
+        mapper.deleteuser(buser_id);
+    }
+
+    @Override
+    public void updateadmin(Integer buser_id) {
+        mapper.updateadmin(buser_id);
+    }
+
 
 }

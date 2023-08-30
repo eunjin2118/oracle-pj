@@ -16,4 +16,10 @@ public interface dbMapper {
     public buserDTO selectuser(Integer buser_id);
 
     public void update(buserDTO dto);
+
+    public List<buserDTO> selectall();
+
+    public void deleteuser(Integer buser_id);
+
+    public void updateadmin(Integer buser_id);
 }

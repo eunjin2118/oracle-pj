@@ -6,4 +6,5 @@ import lombok.Data;
 public class categoryDTO {
     private Integer category_id;
     private String category_name;
+    private Integer book_count;
 }

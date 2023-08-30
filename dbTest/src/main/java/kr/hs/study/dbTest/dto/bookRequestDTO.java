@@ -12,4 +12,6 @@ public class bookRequestDTO {
     private String request_author;
     private String request_title;
     private Integer is_approved;
+    private String book_author;
+    private String book_title;
 }

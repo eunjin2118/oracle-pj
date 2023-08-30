@@ -19,6 +19,10 @@ public interface bookMapper {
 
     public List<categoryDTO> selectcg();
 
+    public void insertcg(categoryDTO dto);
+
+    public List<categoryDTO> countcg();
+
     public void updatebook(bookDTO dto);
 
     public void deletebook(Integer id);

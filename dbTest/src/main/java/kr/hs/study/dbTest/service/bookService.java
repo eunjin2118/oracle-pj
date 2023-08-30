@@ -17,8 +17,13 @@ public interface bookService {
 
     public List<categoryDTO> selectcg();
 
+    public List<categoryDTO> countcg();
+
+    public void insertcg(categoryDTO dto);
+
     public void updatebook(bookDTO dto);
 
     public void deletebook(Integer id);
+
 
 }
