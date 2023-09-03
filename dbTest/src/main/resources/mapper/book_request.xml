@@ -4,22 +4,22 @@
 
 <mapper namespace="kr.hs.study.dbTest.mapper.bookRequestMapper">
     <insert id="insert" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO">
-        insert into book_request(request_id, buser_id, request_date, request_author, request_title, is_approved) values(BOOK_REQUEST_SEQ.NEXTVAL, #{buser_id}, sysdate, #{request_author},  #{request_title}, 0)
+        INSERT INTO book_request(request_id, buser_id, request_date, request_author, request_title, is_approved) VALUES (BOOK_REQUEST_SEQ.NEXTVAL, #{buser_id}, sysdate, #{request_author},  #{request_title}, 0)
     </insert>
 
     <select id="select" resultType="kr.hs.study.dbTest.dto.bookRequestDTO">
-        select * from book_request where is_approved <![CDATA[ < ]]><![CDATA[ > ]]> 1
+        SELECT * FROM book_request WHERE is_approved <![CDATA[ < ]]><![CDATA[ > ]]> 1
     </select>
 
     <insert id="insertbook" parameterType="kr.hs.study.dbTest.dto.bookDTO">
-        insert into book(book_id, book_author, book_title, book_publish, book_url, category_id) values(BOOK_SEQ.NEXTVAL, #{book_author},  #{book_title}, #{book_publish}, #{book_url}, #{category_id})
+        INSERT INTO book(book_id, book_author, book_title, book_publish, book_url, category_id) VALUES (BOOK_SEQ.NEXTVAL, #{book_author},  #{book_title}, #{book_publish}, #{book_url}, #{category_id})
     </insert>
 
     <delete id="deleterequestbook" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO" >
-        delete from book_request where request_title = #{book_title} and requst_author = #{book_author}
+        DELETE FROM book_request WHERE request_title = #{book_title} AND requst_author = #{book_author}
     </delete>
 
     <update id="update" parameterType="kr.hs.study.dbTest.dto.bookRequestDTO">
-        update book_request set is_approved = 1 where request_title = #{book_title}
+        UPDATE book_request SET is_approved = 1 WHERE request_title = #{book_title}
     </update>
 </mapper>

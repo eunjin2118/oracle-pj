@@ -5,42 +5,42 @@
 <mapper namespace="kr.hs.study.dbTest.mapper.commentMapper">
 
     <insert id="insert" parameterType="kr.hs.study.dbTest.dto.commentDTO">
-        insert into book_comment(comment_id, buser_id, book_id, comment_text, comment_date) values(BOOK_COMMENT_SEQ.NEXTVAL, #{buser_id}, #{book_id}, #{comment_text},sysdate)
+        INSERT INTO book_comment(comment_id, buser_id, book_id, comment_text, comment_date) VALUES (BOOK_COMMENT_SEQ.NEXTVAL, #{buser_id}, #{book_id}, #{comment_text},sysdate)
     </insert>
 
     <select id="read" resultType="kr.hs.study.dbTest.dto.bookDTO">
-        select * from book where book_id = #{book_id}
+        SELECT * FROM book WHERE book_id = #{book_id}
     </select>
 
     <select id="readcomment" resultType="kr.hs.study.dbTest.dto.commentDTO">
         SELECT bc.comment_id, bc.buser_id, bc.comment_text, bc.comment_date, bu.name
-        from book_comment bc
-        join buser bu on bu.buser_id = bc.buser_id
-        where bc.book_id = #{book_id}
-        order by bc.comment_date
+        FROM book_comment bc
+        JOIN buser bu ON bu.buser_id = bc.buser_id
+        WHERE bc.book_id = #{book_id}
+        ORDER BY bc.comment_date
     </select>
 
     <select id="mycomment" resultType="kr.hs.study.dbTest.dto.commentDTO">
-        select count(*) AS comment_count
-        from book_comment
-        where buser_id = #{buser_id}
-        group by buser_id
+        SELECT COUNT(*) AS comment_count
+        FROM book_comment
+        WHERE buser_id = #{buser_id}
+        GROUP BY buser_id
     </select>
 
     <select id="mycomments" resultType="kr.hs.study.dbTest.dto.commentDTO">
-        select bc.*, b.book_title
-        from book_comment bc
-        join book b on b.book_id = bc.book_id
-        where buser_id = #{buser_id}
+        SELECT bc.*, b.book_title
+        FROM book_comment bc
+        JOIN book b ON b.book_id = bc.book_id
+        WHERE buser_id = #{buser_id}
     </select>
 
     <delete id="delete" parameterType="kr.hs.study.dbTest.dto.commentDTO" >
-        delete from book_comment where comment_id = #{comment_id}
+        DELETE FROM book_comment WHERE comment_id = #{comment_id}
     </delete>
 
 
     <delete id="deletecomments" parameterType="kr.hs.study.dbTest.dto.commentDTO" >
-        delete from book_comment where book_id = #{book_id}
+        DELETE FROM book_comment WHERE book_id = #{book_id}
     </delete>
 
 </mapper>

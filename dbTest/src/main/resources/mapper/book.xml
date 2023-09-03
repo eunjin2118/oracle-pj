@@ -4,37 +4,37 @@
 
 <mapper namespace="kr.hs.study.dbTest.mapper.bookMapper">
     <select id="select" resultType="kr.hs.study.dbTest.dto.bookDTO">
-        select * from  (select * from book order by dbms_random.value) where rownum <![CDATA[ < ]]> 6
+        SELECT * FROM  (SELECT * FROM book order by dbms_random.value) WHERE rownum <![CDATA[ < ]]> 6
 <!--        SELECT * FROM ( SELECT book.*, ROW_NUMBER() OVER (ORDER BY DBMS_RANDOM.VALUE) AS rn FROM book) WHERE rn <= 5-->
     </select>
 
 
     <select id="read" resultType="kr.hs.study.dbTest.dto.bookDTO">
-        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name from book b join book_categories c on b.category_id = c.category_id
+        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name FROM book b JOIN book_categories c ON b.category_id = c.category_id
     </select>
 
     <select id="search" resultType="kr.hs.study.dbTest.dto.bookDTO">
-        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name from book b join book_categories c on b.category_id = c.category_id
-        WHERE BOOK_TITLE  like '%' || #{searchtext} || '%' OR BOOK_AUTHOR  like '%' || #{searchtext} || '%'
+        SELECT b.book_id, b.book_title, b.book_author, b.book_publish, b.book_url, c.category_id, c.category_name FROM book b FROM book_categories c ON b.category_id = c.category_id
+        WHERE BOOK_TITLE  LIKE '%' || #{searchtext} || '%' OR BOOK_AUTHOR  LIKE '%' || #{searchtext} || '%'
     </select>
 
     <select id="bookread" resultType="kr.hs.study.dbTest.dto.bookDTO">
-        select * from book where book_id = #{book_id}
+        SELECT * FROM book WHERE book_id = #{book_id}
     </select>
 
 
     <update id="updatebook" parameterType="kr.hs.study.dbTest.dto.bookDTO">
-        update book set book_title = #{book_title}, book_author = #{book_author}, book_publish = #{book_publish}, book_url = #{book_publish}, category_id = #{category_id}
-        where book_id = #{book_id}
+        UPDATE book SET book_title = #{book_title}, book_author = #{book_author}, book_publish = #{book_publish}, book_url = #{book_publish}, category_id = #{category_id}
+        WHERE book_id = #{book_id}
     </update>
 
 <!--    카테고리-->
     <select id="selectcg" resultType="kr.hs.study.dbTest.dto.categoryDTO">
-        select * from book_categories
+        SELECT * FROM book_categories
     </select>
 
     <insert id="insertcg" parameterType="kr.hs.study.dbTest.dto.categoryDTO">
-        insert into book_categories(category_id, category_name) values(CATEGORY_SEQ.NEXTVAL, #{category_name})
+        INSERT INTO book_categories(category_id, category_name) VALUES (CATEGORY_SEQ.NEXTVAL, #{category_name})
     </insert>
 
     <select id="countcg" resultType="kr.hs.study.dbTest.dto.categoryDTO">
@@ -45,7 +45,7 @@
     </select>
 
     <delete id="deletebook" parameterType="kr.hs.study.dbTest.dto.bookDTO" >
-        delete from book where book_id = #{book_id}
+        DELETE FROM book WHERE book_id = #{book_id}
     </delete>
 
 

@@ -4,7 +4,7 @@
 
 <mapper namespace="kr.hs.study.dbTest.mapper.dbMapper">
     <insert id="insert" parameterType="kr.hs.study.dbTest.dto.buserDTO">
-        insert into buser(buser_id, name, email, password, role) values(BUSER_SEQ.NEXTVAL, #{name}, #{email}, #{password}
+        INSERT INTO buser(buser_id, name, email, password, role) VALUES (BUSER_SEQ.NEXTVAL, #{name}, #{email}, #{password}
         ,
         <choose>
             <when test="email.toLowerCase() == 'admin@admin.com'"> 'admin' </when>
@@ -30,15 +30,15 @@
     </select>
 
     <update id="update" parameterType="kr.hs.study.dbTest.dto.buserDTO">
-        update buser set name = #{name}, email = #{email} where buser_id = #{buser_id}
+        UPDATE buser SET name = #{name}, email = #{email} WHERE buser_id = #{buser_id}
     </update>
 
     <delete id="deleteuser" parameterType="kr.hs.study.dbTest.dto.buserDTO" >
-        delete from buser where buser_id = #{buser_id}
+        DELETE FROM buser WHERE buser_id = #{buser_id}
     </delete>
 
     <update id="updateadmin" parameterType="kr.hs.study.dbTest.dto.buserDTO">
-        update buser set role = 'admin' where buser_id = #{buser_id}
+        UPDATE buser SET role = 'admin' WHERE buser_id = #{buser_id}
     </update>
 
 </mapper>
